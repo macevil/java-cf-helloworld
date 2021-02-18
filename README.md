@@ -24,6 +24,6 @@ Johannes Jungkunst - [@kaffeemann](https://twitter.com/kaffeemann) - kaffeemann@
 * [Paketo buildpacks](https://paketo.io/)
 * [Snyk](https://snyk.io/de/)
 
-
 ## License
+
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fmacevil%2Fjava-cf-helloworld.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fmacevil%2Fjava-cf-helloworld?ref=badge_large)
