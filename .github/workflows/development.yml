@@ -1,0 +1,48 @@
+name: testBuild
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  security:
+    runs-on: ubuntu-20.04
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v2
+
+    - name: Run Snyk to check for vulnerabilities
+      uses: snyk/actions/maven-3-jdk-11@master
+      env:
+        SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
+
+  test:
+    runs-on: ubuntu-20.04
+
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+
+    - name: Test with Maven
+      run: mvn -B clean test -f pom.xml
+
+  build:
+    runs-on: ubuntu-20.04
+    needs: [test, security]
+
+    steps:
+    - name: Checkout the repository
+      uses: actions/checkout@v2
+
+    - name: Set up JDK 11
+      uses: actions/setup-java@v1
+      with:
+        java-version: 11
+
+    - name: Build with Maven
+      run: mvn -B package -f pom.xml
